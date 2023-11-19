@@ -47,6 +47,9 @@ urlpatterns = [
 
     # local apps
     path('account/', include('apps.account.urls'), name='account'),
+    path('product/', include('apps.product.urls'), name='product'),
+    path('storage/', include('apps.storage.urls'), name='storage'),
+    path('order/', include('apps.order.urls'), name='order'),
 ]
 
 if settings.DEBUG:
