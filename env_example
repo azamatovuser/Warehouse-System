@@ -1,0 +1,12 @@
+# django secret key
+SECRET_KEY=12345
+DEBUG=True
+
+
+# Hozircha PostgreSQL qilish shart emas, sqlite3 ishlatib turamiz. Bu narsa keginchalik
+# PostgreSQL
+NAME=12345
+USER=12345
+PASSWORD=12345
+HOST=12345
+PORT=12345
