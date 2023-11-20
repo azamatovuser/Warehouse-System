@@ -50,6 +50,7 @@ urlpatterns = [
     path('product/', include('apps.product.urls'), name='product'),
     path('storage/', include('apps.storage.urls'), name='storage'),
     path('order/', include('apps.order.urls'), name='order'),
+    path('task/', include('apps.task.urls'), name='task'),
 ]
 
 if settings.DEBUG:
