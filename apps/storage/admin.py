@@ -1,3 +1,8 @@
 from django.contrib import admin
+from apps.storage.models import Storage
 
-# Register your models here.
+
+@admin.register(Storage)
+class StorageAdmin(admin.ModelAdmin):
+    list_display = ('spare', )
+    search_fields = ('spare', )

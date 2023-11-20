@@ -15,7 +15,7 @@ class Spare(models.Model):
 
 
 class Device(models.Model):
-    account = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
+    client = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True, related_name='client_device')
     name = models.CharField(max_length=221)
     imei = models.CharField(max_length=221)
     created_date = models.DateTimeField(auto_now_add=True)
