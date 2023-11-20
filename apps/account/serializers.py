@@ -69,3 +69,15 @@ class AccountUpdateSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'role': {'read_only': True}
         }
+
+
+class ClientListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Account
+        fields = '__all__'
+
+
+class ClientCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Account
+        fields = ('username', 'email', 'full_name', 'phone_number')

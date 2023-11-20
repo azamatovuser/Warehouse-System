@@ -1,10 +1,16 @@
 from django.db.models import Q
-from rest_framework import generics, status
+from rest_framework import generics, status, permissions
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from apps.account.permissions import IsOwnUserOrReadOnly
-from apps.account.serializers import RegisterSerializer, LoginSerializer, AccountUpdateSerializer
+from apps.account.serializers import (
+    RegisterSerializer,
+    LoginSerializer,
+    AccountUpdateSerializer,
+    ClientCreateSerializer,
+    ClientListSerializer
+)
 from apps.account.models import Account
 
 
@@ -82,3 +88,22 @@ class AccountListView(generics.ListAPIView):
             count = queryset.count()
             return Response({'success': True, 'count': count, 'data': serializer.data}, status=status.HTTP_200_OK)
         return Response({'success': False, 'data': 'queryset does not match'}, status=status.HTTP_404_NOT_FOUND)
+
+
+class ClientListAPIView(generics.ListCreateAPIView):
+    queryset = Account.objects.all()
+    permission_classes = (permissions.IsAuthenticated, )
+
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return ClientCreateSerializer
+
+        elif self.request.method == 'GET':
+            return ClientListSerializer
+
+    #clint yaratilganda avtomatik role yaratadi
+    def perform_create(self, serializer):
+        serializer.save(role=2)
+
+    def get_queryset(self):
+        return Account.objects.filter(role=2)
