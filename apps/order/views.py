@@ -1,7 +1,7 @@
 from rest_framework import generics
 from apps.order.models import Order
 from apps.storage.models import Storage
-from apps.order.serializers import OrderCreateSerializer
+from apps.order.serializers import OrderCreateSerializer, OrderListSerializer, OrderDetailSerializer
 from rest_framework import serializers
 
 
@@ -35,3 +35,13 @@ class OrderCreateAPIView(generics.CreateAPIView):
 
         order = serializer.save()
         return order
+
+
+class OrderListAPIView(generics.ListAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderListSerializer
+
+
+class OrderRUDAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderDetailSerializer
