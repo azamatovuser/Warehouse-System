@@ -74,7 +74,7 @@ class AccountUpdateSerializer(serializers.ModelSerializer):
 class ClientListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
-        fields = '__all__'
+        fields = ('username', 'email', 'full_name', 'phone_number')
 
 
 class ClientCreateSerializer(serializers.ModelSerializer):

@@ -106,4 +106,5 @@ class ClientListAPIView(generics.ListCreateAPIView):
         serializer.save(role=2)
 
     def get_queryset(self):
-        return Account.objects.filter(role=2)
+        qs = super().get_queryset()
+        return qs.filter(role=2)
