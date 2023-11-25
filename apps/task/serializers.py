@@ -10,7 +10,7 @@ class TaskListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Task
-        fields = ('title', 'manager_full_name', 'employee_full_name', 'device_name')
+        fields = ('id', 'title', 'manager_full_name', 'employee_full_name', 'device_name')
 
     def get_manager_full_name(self, obj):
         return obj.manager.full_name if obj.manager else None
@@ -20,6 +20,15 @@ class TaskListSerializer(serializers.ModelSerializer):
 
     def get_device_name(self, obj):
         return obj.device.name if obj.device else None
+
+
+class TaskDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Task
+        fields = '__all__'
+        extra_kwargs = {
+            'manager': {'read_only': True}
+        }
 
 
 class TaskCreateSerializer(serializers.ModelSerializer):
