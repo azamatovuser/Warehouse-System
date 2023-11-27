@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from apps.order.models import Order
+from apps.order.models import Order, Notification
 
 
 class OrderCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
-        fields = ('client', 'device', 'storage', 'problem_description', 'price')
+        fields = ('id', 'client', 'device', 'storage', 'problem_description', 'price', 'deadline', 'is_done')
 
 
 class OrderListSerializer(serializers.ModelSerializer):
@@ -13,7 +13,7 @@ class OrderListSerializer(serializers.ModelSerializer):
     device_name = serializers.SerializerMethodField()
     class Meta:
         model = Order
-        fields = ('client_full_name', 'device_name', 'price')
+        fields = ('id', 'client_full_name', 'device_name', 'price', 'deadline')
 
     def get_client_full_name(self, obj):
         return obj.client.full_name if obj.client else None
@@ -28,7 +28,7 @@ class OrderDetailSerializer(serializers.ModelSerializer):
     storages = serializers.SerializerMethodField()
     class Meta:
         model = Order
-        fields = ('client_full_name', 'device_name', 'storages', 'problem_description', 'price', 'is_done')
+        fields = ('id', 'client_full_name', 'device_name', 'storages', 'problem_description', 'price', 'deadline', 'is_done')
 
     def get_client_full_name(self, obj):
         return obj.client.full_name if obj.client else None
@@ -38,3 +38,15 @@ class OrderDetailSerializer(serializers.ModelSerializer):
 
     def get_storages(self, obj):
         return [storage.spare.name for storage in obj.storage.all()] if obj.storage.exists() else []
+
+
+class OrderUpdateDeleteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = '__all__'
+
+
+class NotificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notification
+        fields = '__all__'

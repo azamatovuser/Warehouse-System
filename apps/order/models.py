@@ -10,5 +10,15 @@ class Order(models.Model):
     storage = models.ManyToManyField(Storage, null=True, blank=True, related_name='storage_order')
     problem_description = models.TextField(null=True)
     price = models.DecimalField(max_digits=25, decimal_places=2)
+    deadline = models.DateField(null=True)
     is_done = models.BooleanField(default=False, null=True)
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    is_notificated = models.BooleanField(default=False, null=True)
+
+
+class Notification(models.Model):
+    employee = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    message = models.TextField(null=True)
     created_date = models.DateTimeField(auto_now_add=True)
