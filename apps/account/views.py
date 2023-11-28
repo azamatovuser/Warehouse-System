@@ -108,3 +108,10 @@ class ClientListAPIView(generics.ListCreateAPIView):
     def get_queryset(self):
         qs = super().get_queryset()
         return qs.filter(role=2)
+
+
+class ClientDeleteApiView(generics.DestroyAPIView):
+    queryset = Account.objects.all()
+    serializer_class = ClientListSerializer
+    permission_classes = (permissions.IsAuthenticated, )
+
