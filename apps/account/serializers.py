@@ -74,10 +74,10 @@ class AccountUpdateSerializer(serializers.ModelSerializer):
 class ClientListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
-        fields = ('username', 'email', 'full_name', 'phone_number')
+        fields = ('id', 'username', 'email', 'full_name', 'phone_number')
 
 
 class ClientCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
-        fields = ('username', 'email', 'full_name', 'phone_number')
+        fields = ('id', 'username', 'email', 'full_name', 'phone_number')
