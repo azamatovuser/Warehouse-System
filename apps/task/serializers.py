@@ -30,6 +30,20 @@ class TaskDetailSerializer(serializers.ModelSerializer):
             'manager': {'read_only': True}
         }
 
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+
+        manager = instance.manager
+        representation['manager'] = manager.full_name if manager and manager.full_name else manager.id
+
+        employee = instance.employee
+        representation['employee'] = employee.full_name if employee and employee.full_name else employee.id
+
+        device = instance.device
+        representation['device'] = device.name if device else None
+
+        return representation
+
 
 class TaskCreateSerializer(serializers.ModelSerializer):
     class Meta:
