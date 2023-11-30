@@ -2,6 +2,7 @@ from django.db.models import Q
 from rest_framework import generics, status, permissions
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from apps.account.permissions import IsClientPermission
 
 from apps.account.permissions import IsOwnUserOrReadOnly
 from apps.account.serializers import (
@@ -113,5 +114,5 @@ class ClientListAPIView(generics.ListCreateAPIView):
 class ClientDeleteApiView(generics.DestroyAPIView):
     queryset = Account.objects.all()
     serializer_class = ClientListSerializer
-    permission_classes = (permissions.IsAuthenticated, )
+    permission_classes = (permissions.IsAuthenticated, IsClientPermission)
 
