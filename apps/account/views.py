@@ -116,3 +116,8 @@ class ClientDeleteApiView(generics.DestroyAPIView):
     serializer_class = ClientListSerializer
     permission_classes = (permissions.IsAuthenticated, IsClientPermission)
 
+
+class ClientUpdateAPIView(generics.UpdateAPIView):
+    queryset = Account.objects.all()
+    serializer_class = ClientListSerializer
+    permission_classes = (permissions.IsAuthenticated, )

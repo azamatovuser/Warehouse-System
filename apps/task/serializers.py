@@ -13,13 +13,16 @@ class TaskListSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'manager_full_name', 'employee_full_name', 'device_name')
 
     def get_manager_full_name(self, obj):
-        return obj.manager.full_name if obj.manager else None
+        manager = obj.manager
+        return manager.full_name if manager and manager.full_name else manager.username if manager and manager.username else manager.id if manager else None
 
     def get_employee_full_name(self, obj):
-        return obj.employee.full_name if obj.employee else None
+        employee = obj.employee
+        return employee.full_name if employee and employee.full_name else employee.username if employee and employee.username else employee.id if employee else None
 
     def get_device_name(self, obj):
-        return obj.device.name if obj.device else None
+        device = obj.device
+        return device.name if device else None
 
 
 class TaskDetailSerializer(serializers.ModelSerializer):
@@ -34,10 +37,10 @@ class TaskDetailSerializer(serializers.ModelSerializer):
         representation = super().to_representation(instance)
 
         manager = instance.manager
-        representation['manager'] = manager.full_name if manager and manager.full_name else manager.id
+        representation['manager'] = manager.full_name if manager and manager.full_name else manager.username if manager and manager.username else manager.id if manager else None
 
         employee = instance.employee
-        representation['employee'] = employee.full_name if employee and employee.full_name else employee.id
+        representation['employee'] = employee.full_name if employee and employee.full_name else employee.username if employee and employee.username else employee.id if employee else None
 
         device = instance.device
         representation['device'] = device.name if device else None

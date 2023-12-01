@@ -45,7 +45,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
 
     username = models.CharField(max_length=50, unique=True, verbose_name=_('Username'), db_index=True)
     email = models.EmailField(unique=True, null=True, blank=True)
-    full_name = models.CharField(max_length=50, verbose_name=_('Full name'), null=True, blank=True)
+    full_name = models.CharField(max_length=50, verbose_name=_('Full name'), null=True)
     phone_number = models.CharField(max_length=221, null=True, blank=True)
     role = models.IntegerField(choices=ROLE, default=2, null=True)
     is_superuser = models.BooleanField(default=False, verbose_name=_('Super user'))
