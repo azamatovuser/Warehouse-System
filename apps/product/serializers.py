@@ -12,3 +12,9 @@ class DeviceListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Device
         fields = '__all__'
+
+
+class SpareCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Spare
+        fields = '__all__'
