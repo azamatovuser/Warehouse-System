@@ -5,7 +5,7 @@ from apps.product.models import Spare, Device
 class DeviceCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Device
-        fields = ('client', 'name', 'imei')
+        fields = ('id', 'client', 'name', 'imei')
 
 
 class DeviceListSerializer(serializers.ModelSerializer):
