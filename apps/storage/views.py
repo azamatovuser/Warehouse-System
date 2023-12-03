@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from calendar import monthrange
 
 
-class StorageListAPIView(generics.ListAPIView):
+class StorageListAPIView(generics.ListCreateAPIView):
     queryset = Storage.objects.all()
     serializer_class = StorageListSerializer
 

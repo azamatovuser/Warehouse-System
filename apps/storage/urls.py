@@ -3,7 +3,7 @@ from apps.storage.views import MonthlyOrderListAPIView, DailyOrderListAPIView, S
 
 
 urlpatterns = [
-    path('list/', StorageListAPIView.as_view()),
+    path('list_or_create/', StorageListAPIView.as_view()),
     path('analytics/monthly_order/', MonthlyOrderListAPIView.as_view()),
     path('analytics/daily_order/', DailyOrderListAPIView.as_view()),
 ]
