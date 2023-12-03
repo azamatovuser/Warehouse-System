@@ -5,9 +5,11 @@ from apps.product.views import (SpareListAPIView,
                                 DeviceDetailAPIView,
                                 SpareCreateAPIView,
                                 SpareDetailAPIView,
-                                SpareDeleteAPIView)
+                                SpareDeleteAPIView,
+                                AllSparesListAPIView)
 
 urlpatterns = [
+    path('spare_list_with_id', AllSparesListAPIView.as_view()),
     path('spare_list/', SpareListAPIView.as_view()),
     path('spare_create/', SpareCreateAPIView.as_view()),
     path('spare_detail/<int:pk>', SpareDetailAPIView.as_view()),

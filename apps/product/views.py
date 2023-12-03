@@ -61,3 +61,8 @@ class SpareDeleteAPIView(generics.DestroyAPIView):
     queryset = Spare.objects.all()
     serializer_class = SpareCreateSerializer
     permission_classes = (permissions.IsAuthenticated, )
+
+
+class AllSparesListAPIView(generics.ListAPIView):
+    queryset = Spare.objects.all()
+    serializer_class = SpareCreateSerializer
