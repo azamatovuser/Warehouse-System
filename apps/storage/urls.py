@@ -1,9 +1,10 @@
 from django.urls import path
 from apps.storage.views import MonthlyOrderListAPIView, DailyOrderListAPIView, StorageListAPIView, \
-    OrderTotalPriceAPIView, ClientMonthlyAPIView, ClientWeeklyAPIView, ClientYearlyAPIView, ClientDailyAPIView
+    OrderTotalPriceAPIView, ClientMonthlyAPIView, ClientWeeklyAPIView, ClientYearlyAPIView, ClientDailyAPIView, StorageAvailableListAPIView
 
 urlpatterns = [
     path('list_or_create/', StorageListAPIView.as_view()),
+    path('available_list/', StorageAvailableListAPIView.as_view()),
     path('analytics/monthly_order/', MonthlyOrderListAPIView.as_view()),
     path('analytics/daily_order/', DailyOrderListAPIView.as_view()),
     path('analytics/order_total_price/', OrderTotalPriceAPIView.as_view()),

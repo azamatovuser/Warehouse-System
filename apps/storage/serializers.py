@@ -7,6 +7,14 @@ class StorageListSerializer(serializers.ModelSerializer):
         model = Storage
         fields = '__all__'
 
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+
+        spare = instance.spare
+        representation['spare'] = spare.name if spare and spare.name else spare.id
+
+        return representation
+
 
 class OrderTotalSerializer(serializers.Serializer):
     total_price = serializers.DecimalField(max_digits=25, decimal_places=2)

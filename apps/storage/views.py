@@ -15,6 +15,15 @@ class StorageListAPIView(generics.ListCreateAPIView):
     serializer_class = StorageListSerializer
 
 
+class StorageAvailableListAPIView(generics.ListAPIView):
+    queryset = Storage.objects.all()
+    serializer_class = StorageListSerializer
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(is_booked=False)
+
+
 class MonthlyOrderListAPIView(APIView):
     def get(self, request):
         # Get the current date
