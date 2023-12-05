@@ -2,6 +2,10 @@ from django.db import models
 from apps.account.models import Account
 from apps.storage.models import Storage
 from apps.product.models import Device
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.utils import timezone
+from datetime import timedelta
 
 
 class Order(models.Model):
@@ -22,3 +26,9 @@ class Notification(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     message = models.TextField(null=True)
     created_date = models.DateTimeField(auto_now_add=True)
+
+
+@receiver(post_save, sender=Notification)
+def delete_old_notifications(sender, instance, **kwargs):
+    cutoff_date = timezone.now()
+    Notification.objects.filter(created_date__lt=cutoff_date).delete()
