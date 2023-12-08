@@ -56,20 +56,20 @@ class OrderUpdateAPIView(generics.UpdateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderUpdateDeleteSerializer
 
-    def perform_update(self, serializer):
-        instance = serializer.instance
-        storage_data_list = serializer.validated_data.get('storage')
-
-        for existing_storage in instance.storage.all():
-            if existing_storage not in [storage_data.spare for storage_data in storage_data_list]:
-                existing_storage.is_booked = False
-                existing_storage.save()
-
-        for storage in storage_data_list:
-            storage.is_booked = True
-            storage.save()
-
-        instance = serializer.save()
+    # def perform_update(self, serializer):
+    #     instance = serializer.instance
+    #     storage_data_list = serializer.validated_data.get('storage')
+    #
+    #     for existing_storage in instance.storage.all():
+    #         if existing_storage not in [storage_data.spare for storage_data in storage_data_list]:
+    #             existing_storage.is_booked = False
+    #             existing_storage.save()
+    #
+    #     for storage in storage_data_list:
+    #         storage.is_booked = True
+    #         storage.save()
+    #
+    #     instance = serializer.save()
 
 
 
