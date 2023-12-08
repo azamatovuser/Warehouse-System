@@ -44,6 +44,7 @@ class OrderUpdateDeleteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = '__all__'
+        exclude = ('storage', )
 
 
 class NotificationSerializer(serializers.ModelSerializer):

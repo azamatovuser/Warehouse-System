@@ -33,7 +33,6 @@ class OrderCreateAPIView(generics.CreateAPIView):
         if is_any_storage_booked:
             raise serializers.ValidationError("At least one storage is already booked.")
 
-
         for storage_data in storage_data_list:
             storage = Storage.objects.get(id=storage_data.id)
             storage.is_booked = True
