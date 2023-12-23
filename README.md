@@ -17,5 +17,5 @@ Business process was automated by providing CRM System. A team where 3 developer
 Source - https://github.com/Ziiyodullayevv/Storage
 
 **Map**
-Miro link - https://miro.com/app/board/uXjVNOJcCao=/
+- Miro link - https://miro.com/app/board/uXjVNOJcCao=/
 
